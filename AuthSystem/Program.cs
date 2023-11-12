@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AuthSystem.Data;
 using AuthSystem.Areas.Identity.Data;
+using AuthSystem.Services.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AuthDbContextConnection' not found.");
@@ -12,6 +13,8 @@ builder.Services
 	.AddDefaultIdentity<ApplicationUser>(options => 
 		options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AuthDbContext>();
+
+builder.Services.AddSingleton(typeof(IEmailSender<>), typeof(EmailSender<>));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

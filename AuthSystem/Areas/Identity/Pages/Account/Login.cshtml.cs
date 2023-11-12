@@ -1,9 +1,7 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using AuthSystem.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -11,16 +9,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
-namespace AuthSystem.Areas.Identity.Pages.Account;
+namespace AuthSystem.Areas.Identity.Pages.Account.Internal;
 
 /// <summary>
 ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
 ///     directly from your code. This API may change or be removed in future releases.
 /// </summary>
 [AllowAnonymous]
-public abstract class LoginModelApp : PageModel
+public abstract class LoginViewModel : PageModel
 {
     /// <summary>
     ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -91,7 +88,7 @@ public abstract class LoginModelApp : PageModel
     public virtual Task<IActionResult> OnPostAsync(string? returnUrl = null) => throw new NotImplementedException();
 }
 
-public class LoginModel : LoginModelApp
+internal sealed class LoginModel : LoginViewModel
 {
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly ILogger<LoginModel> _logger;
