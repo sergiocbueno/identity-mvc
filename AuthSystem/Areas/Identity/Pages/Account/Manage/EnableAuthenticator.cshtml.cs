@@ -196,7 +196,7 @@ internal sealed class EnableAuthenticatorModel : EnableAuthenticatorViewModel
         return string.Format(
             CultureInfo.InvariantCulture,
             AuthenticatorUriFormat,
-            _urlEncoder.Encode("Microsoft.AspNetCore.Identity.UI"),
+            _urlEncoder.Encode("AuthSystem"),
             _urlEncoder.Encode(email),
             unformattedKey);
     }
